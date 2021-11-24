@@ -1,0 +1,1111 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+\usepackage{tikz}
+
+
+
+\pdfinfo{
+  /Title (Discrete_Mathematics_Cheat_Sheet.pdf)
+  /Creator (TeX)
+  /Producer (pdfTeX 1.40.0)
+  /Author (jcenkins)
+  /Subject (Discrete Mathematics)
+  /Keywords (pdflatex, latex,pdftex,tex)}
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries\centering}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%My Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+%\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{{Discrete Mathematics Cheat Sheet}} \\
+\end{center}
+
+\begin{multicols}{2}
+
+\section{Set Theory}
+\subsection{Definitions}
+
+\textbf{Set Definition:} A \textit{set} is a collection of objects called \textit{elements}
+
+\textbf{Visual Representation:} 
+\begin{tikzpicture}
+% Set A
+%\node [draw,
+%    circle,
+%    minimum size =1cm,
+%    label={135:$A$}] (A) at (0,0){};
+ 
+\filldraw[color=black, fill=white](0,0) circle (.5);
+% Set intersection label
+\node at (-.15,.15) {1};
+\node at (-.15,-.15) {2};
+\node at (.15,0) {3};
+
+\end{tikzpicture}
+
+\textbf{List Notation:} $\{1, 2, 3\}$
+
+\subsection{Characteristics}
+
+Sets can be finite or infinite.
+
+\begin{itemize}
+
+    \item[]\textbf{Finite:} $A = \{1, 2, 3, 4, 5, 6, 7, 8, 9\}$
+
+    \item[]\textbf{Infinite:} $\mathbb{Z}^+ = \{1, 2, 3, 4, \dots\}$
+
+    \item[]\textit{Dots represent an implied pattern that continues infinitely}
+\end{itemize}
+
+\textbf{Repeated Elements} are only listed once: $\{a,b,a,c,b,a\} = \{a,b,c\}$
+
+Sets are \textbf{Unordered:} 
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+% Set intersection label
+\node at (-.15,.15) {1};
+\node at (-.15,-.15) {2};
+\node at (.15,0) {3};
+\end{tikzpicture}
+\begin{tikzpicture}
+\filldraw[color=white, fill=white](0,0) rectangle (.25,1);
+\node at (0,.4) {=};
+\end{tikzpicture}
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+% Set intersection label
+\node at (-.15,.15) {3};
+\node at (-.15,-.15) {2};
+\node at (.15,0) {1};
+\end{tikzpicture}
+
+\begin{itemize}
+    \item[ ]$\{3,2,1\} = \{1,2,3\} = \{2,1,3\}$
+\end{itemize}
+
+\subsection{Common Sets}
+\begin{itemize}
+    \item[]\textbf{Natural Numbers:} $\mathbb{N} = \{0,1,2,3,\dots\}$
+    \item[]\textbf{Positive Integers:} $\mathbb{Z}^+ = \{1,2,3,\dots\}$
+    \item[]\textbf{Integers:} $\mathbb{Z} = \{\dots,-2,-1,0,1,2,\dots\}$
+    \item[]\textbf{Rational Numbers:} $\mathbb{Q} = \{\dots,\frac{1}{1},\frac{1}{2},\frac{1}{3},\frac{2}{3},\dots\}$
+\end{itemize}
+
+\subsection{Elements and Cardinality}
+\textbf{Elements} are the things contained in the set.
+
+{Let $C = \{Yellow, Blue, Red\}$}
+
+\begin{itemize}
+    \item[]
+    $Yellow \in C$: \textbf{Yellow} is an element of C.
+    \item[]
+    $Green \not \in C$: \textbf{Green} is not an element of C.
+\end{itemize}
+\textbf{Cardinality} refers to the number of elements in the set.
+\begin{itemize}
+    \item[]
+    $\lvert C \rvert = 3$: The \textbf{Cardinality} (size) of C is 3.
+\end{itemize}
+
+\subsection{The Empty Set}
+\begin{itemize}
+
+\item[]
+ $\emptyset = \{\}$: The empty set is a set with no elements.
+ \item[]
+ $\lvert \emptyset \rvert = \lvert \{\} \rvert = 0$: The cardinality of the empty set is 0.
+ \item[]
+ $\{ \emptyset \} \neq \emptyset$: 
+ \item[]
+ $\{\emptyset\} = \{\{\}\}$
+ \item[]
+ $\lvert \{\emptyset\} \rvert = 1$: The set contains the empty set.
+ \end{itemize}
+
+\subsection{Set Builder Notation}
+Elements in the list are defined as variables.
+\begin{itemize}
+\item[]
+$X = \{expression \mid rule\}$
+\item[]If $Desk = \{drink, laptop, microphone\}$
+\item[]Set Builder Notation defines the set as: $Desk = \{x \mid x\: is\: on\: the\: desk\}$
+\end{itemize}
+
+Let $E = \{2n \mid n \in \mathbb{Z}\}$
+
+\begin{itemize}
+    \item[]Reads as: The set of all things with form $2n$ such that $n$ is an element of $\mathbb{Z}$ 
+    \item[]$2n$ is an expression that defines the \textbf{form} of the elements.
+    \item[]$n \in \mathbb{Z}$ defines a rule for elements appearing in the set.
+    \item[]$\mid$ is read "such that" and separates the expression from the rule.
+\end{itemize}
+Examples:
+\begin{itemize}
+    \item[]$E = \{2n \mid n \in \mathbb{Z}\}$: A set containing even integers
+    \item[]$\mathbb{Q} = \{\frac{m}{n} \mid m,n \in \mathbb{Z}, n \neq 0\}$: A set containing rational numbers (m and n are integers and n is not zero)
+\end{itemize}
+
+\subsection{Ordered Pairs}
+An \textbf{Ordered Pair} is any \textit{list} of things enclosed in parentheses: (x, y).
+\begin{itemize}
+    \item[] $(1,2) \neq (2,1)$
+\end{itemize}
+
+\subsection{Cartesian Products}
+AKA \textbf{Cross Product}
+
+Given 2 sets, A and B, a Cartesian Product is denoted by $A \times B$.
+ 
+The Cartesian Product is a \textit{set} of Ordered Pairs where the first element comes from A and the second element comes from B.
+
+\begin{itemize}
+    \item[]$A \times B = \{(a,b) \mid a \in A,b \in B\}$
+\end{itemize}
+
+Let $X = \{0,1,2\}$ and $Y = \{0,1\}$
+\begin{itemize}
+    \item[]$X \times Y = \{(0,0),(0,1),(1,0),(1,1),(2,0),(2,1)\}$
+    \item[]$Y \times X = \{(0,0),(0,1),(0,2),(1,0),(1,1),(1,2)\}$
+\end{itemize}
+
+\textbf{3-tuple}: $A \times B \times C = \{(a,b,c) \mid a \in A, b \in B, c \in C\}$
+
+\textbf{n-tuple}: $A_1 \times A_2 \times \dots \times A_n = \{(a_1,a_2,\dots,a_n) \mid a_1 \in A_1, a_2 \in A_2, \dots, a_n \in A_n\}$
+
+$\emptyset \times A = \emptyset$
+
+\subsubsection{Cartesian Product Cardinality}
+The cardinality of a cross product is the product of the cardinalities of each set.
+
+If $\lvert A \rvert = m$ and $\lvert B \rvert = n$, then $\lvert A \times B \rvert = m \times n$
+
+Let $\lvert X \rvert = 3$ and $\lvert Y \rvert = 2$.
+\begin{itemize}
+    \item[]$\lvert X \times Y \rvert = 3 \times 2 = 6$
+\end{itemize}
+
+$\lvert \emptyset \rvert \times \lvert A \rvert = 0$
+
+\subsection{Subsets}
+A is a subset of B if every element in A is also in B.
+
+%\textbf{Visually:} 
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+\node at (-.22,.25) {B};
+\filldraw[color=black, fill=white](0,-.15) circle (.3);
+\node at (0,-0.15) {A};
+\end{tikzpicture}
+or  
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+% Set intersection label
+\node at (0,0) {A};
+\end{tikzpicture}
+\begin{tikzpicture}
+\filldraw[color=white, fill=white](0,0) rectangle (.25,1);
+\node at (0,.4) {=};
+\end{tikzpicture}
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+% Set intersection label
+\node at (0,0) {B};
+\end{tikzpicture}
+
+$A \subseteq B$: A is a subset of B.
+\begin{itemize}
+    \item[]$\{a,b\} \subseteq \{a,b,c\}$
+    \item[]$\{c,d\} \subseteq \{c,d\}$
+    \item[]$\{a\} \not \subseteq \{\{a\}\}$: The element a is not an element of the second set.
+    \item[]$\emptyset \subseteq \{x,y,z\}$: The empty set is a subset of every set.
+\end{itemize}
+
+\subsection{Proper Subsets}
+A is a \textbf{proper} subset of B if every element in A is also in B \textit{and} A is smaller than B
+
+%\textbf{Visually:} 
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) circle (.5);
+\node at (-.22,.25) {B};
+\filldraw[color=black, fill=white](0,-.15) circle (.3);
+\node at (0,-0.15) {A};
+\end{tikzpicture}
+
+$A \subset B$: A is a \textit{proper} subset of B.
+
+\begin{itemize}
+    \item[]$\{a,b\} \subset \{a,b,c\}$
+    \item[]$\{c,d\} \not \subset \{c,d\}$
+    \item[]$\emptyset \subset \{x,y,z\}$
+
+\end{itemize}
+
+\subsection{Power Sets}
+A Power Set of a set A is the set containing \textit{all possible} subsets of A.
+
+Let $A = \{a, b\}$
+\begin{itemize}
+    \item[]$\mathbb{P}(A) = \{\emptyset, \{a\}, \{b\}, \{a, b\}\}$
+\end{itemize}
+
+$\mathbb{P}(\emptyset) = \emptyset$
+
+
+\subsubsection{Power Sets Cardinality}
+
+If $\lvert A \rvert = n,\: then \lvert \mathbb{P}(A) \rvert = 2^n$
+
+Let $\lvert A \rvert = 2$
+
+\begin{itemize}
+    \item[]$\lvert \mathbb{P}(A) \rvert = 2^2 = 4$
+\end{itemize}
+
+%To do: add a tree view here.
+
+\subsection{Set Operations}
+\subsubsection{Universes}
+Every set A exists within some universe U.
+
+%\textbf{Visually: }
+\begin{tikzpicture}
+\filldraw[color=black, fill=white](0,0) rectangle (1.5,1);
+\node at (1.25,.80) {U};
+\filldraw[color=black, fill=white](.75,.4) circle (.3);
+\node at (.75,.4) {A};
+\end{tikzpicture}
+ 
+\subsubsection{Complement}
+The complement of a set A is everything outside of A that is in the Universe.
+
+$A^c$ (or $\bar{A}$) $ = \{a \in U \:and\: a \not \in A\}$
+
+Let $A = \{1\}$ and $U = \{1,2,3\}$.
+\begin{itemize}
+    \item[]$A^c = \{2,3\}$
+    
+    %\textbf{Visually: }
+    \begin{tikzpicture}
+    \filldraw[color=black, fill=white](0,0) rectangle (1.5,1);
+    \node at (.25,.80) {2};
+    \node at (1.25,.80) {3};
+    \filldraw[color=black, fill=white](.75,.4) circle (.3);
+    \node[color=red] at (.75,.4) {1};
+    \end{tikzpicture}
+\end{itemize}
+
+\subsubsection{Intersection}
+The intersection of sets A and B is every element that occurs in both A \textbf{and} B.
+
+    $A \cap B = \{x \mid x \in A \:and\: x \in B\}$
+
+Let $A = \{1,2,3\}$ and $B = \{3,4,5\}$
+\begin{itemize}
+    \item[]$A \cap B = \{3\}$
+    \item[]%\textbf{Visually: }
+    \begin{tikzpicture}
+    \filldraw[color=black, fill=white](0,0) circle (.5);
+    \filldraw[color=black, fill=none](.5,0) circle (.5);
+    % Set intersection label
+    \node[color=red] at (-.2,.15) {1};
+    \node[color=red] at (-.2,-.15) {2};
+    \node at (.2,0) {3};
+    \node[color=red] at (.7,.15) {4};
+    \node[color=red] at (.7,-.15) {5};
+    \end{tikzpicture}
+
+\end{itemize}
+
+\subsubsection{Union}
+The union of sets A and B is every element that occurs in either A \textbf{or} B.
+
+$A \cup B = \{x \mid x \in A \:or\: x \in B\}$
+
+Let $A = \{1,2,3\}$ and $B = \{3,4,5\}$
+\begin{itemize}
+    \item[]$A \cup B = \{1,2,3,4,5\}$
+    \item[]%\textbf{Visually: }
+    \begin{tikzpicture}
+    \filldraw[color=black, fill=white](0,0) circle (.5);
+    \filldraw[color=black, fill=none](.5,0) circle (.5);
+    % Set intersection label
+    \node at (-.2,.15) {1};
+    \node at (-.2,-.15) {2};
+    \node at (.2,0) {3};
+    \node at (.7,.15) {4};
+    \node at (.7,-.15) {5};
+    \end{tikzpicture}
+\end{itemize}
+
+\subsubsection{Difference}
+The difference between two sets, A-B, is every element from A \textbf{minus} any element that appears in B.
+
+$A \setminus B = \{x \mid x \in A \:and\: x \not \in B\}$
+
+Let $A = \{1,2,3\}$ and $B = \{3,4,5\}$
+\begin{itemize}
+    \item[]$A \setminus B = \{1,2\}$
+    \item[]%\textbf{Visually: }
+    \begin{tikzpicture}
+    \filldraw[color=black, fill=white](0,0) circle (.5);
+    \filldraw[color=black, fill=none](.5,0) circle (.5);
+    % Set intersection label
+    \node at (-.2,.15) {1};
+    \node at (-.2,-.15) {2};
+    \node[color=red] at (.2,0) {3};
+    \node[color=red] at (.7,.15) {4};
+    \node[color=red] at (.7,-.15) {5};
+    \end{tikzpicture}
+\end{itemize}
+
+\subsubsection{Symmetric Difference}
+The symmetric difference of sets A and B is every element that is \textbf{exclusively} in A \textbf{or} B (i.e. every element from A or B that is not in both).
+
+$A \oplus B = \{x \mid x \in A \:xor\: x \in B\}$
+
+Let $A = \{1,2,3\}$ and $B = \{3,4,5\}$
+\begin{itemize}
+    \item[]$A \oplus B = \{1,2,4,5\}$
+    \item[]%\textbf{Visually: }
+    \begin{tikzpicture}
+    \filldraw[color=black, fill=white](0,0) circle (.5);
+    \filldraw[color=black, fill=none](.5,0) circle (.5);
+    % Set intersection label
+    \node at (-.2,.15) {1};
+    \node at (-.2,-.15) {2};
+    \node[color=red] at (.2,0) {3};
+    \node at (.7,.15) {4};
+    \node at (.7,-.15) {5};
+    \end{tikzpicture}
+\end{itemize}
+
+\subsection{Indexed Sets}
+
+Indexed Set Notation is used to shorten long strings of intersections and unions.
+
+$\bigcap\limits_{i=1}^{n} A_{i} = A_1 \cap A_1 \cap A_2 \cap \dots \cap A_n$
+
+$\bigcup\limits_{i=1}^{n} A_{i} = A_1 \cup A_1 \cup A_2 \cup \dots \cup A_n$
+
+\subsection{Well Ordering Principle}
+An Axiom: Any non-empty subset of the natural numbers ($\mathbb{N})$ has a \textit{least} element.
+
+$\mathbb{N} = \{1,2,3,...,\infty\}$
+
+Let $A = \{1,4,9\} (Note that A \subset \mathbb{N}$)
+\begin{itemize}
+    \item[]1 is the least element.
+\end{itemize}
+
+$B = \{i,j,k \mid i,j,k \in \mathbb{N}\}$
+\begin{itemize}
+    \item[]$i,j,$ or $k$ will be the least element.
+\end{itemize}
+
+When extended to $\mathbb{Z}$, the axiom does not hold since $\mathbb{Z}$ contains $-\infty$.
+
+\section{Logic}
+
+\subsection{Definitions}
+
+A \textbf{statement} is a declarative sentence that is either true (1) or false (0).
+
+Examples:
+\begin{itemize}
+    \item[]Milk is white.
+    \item[]$\lvert \emptyset \rvert = 0$
+    \item[]Humans are just fish with legs.
+\end{itemize}
+
+A \textbf{proposition} represents the idea behind a statement.
+
+A single proposition can be expressed by multiple statements.
+
+Example:
+\begin{itemize}
+    \item[]The statements "It is cloudy." and "It is not sunny." both capture the same proposition.
+\end{itemize}
+
+Notation:
+\begin{itemize}
+    \item[]Capital letters (P, Q, R, etc.) are used to represent a specific proposition.
+    \item[]Lowercase letters (p, q, r, etc.) are used for general proofs and do not represent a specific proposition.
+\end{itemize}
+
+A \textbf{well-formed formula} (WFF) is an expression involving propositions and compound propositions that conform to the syntax of propositional logic.
+
+Example:
+\begin{itemize}
+    \item[]The statements "It is cloudy." and "It is not sunny." both capture the same proposition.
+\end{itemize}
+
+\subsection{Connectives and Truth Tables}
+
+All \textbf{connectives} take a truth value and output a new truth value. 
+
+A \textbf{truth table} shows all possible combinations of truth conditions.
+\begin{itemize}
+    \item[]A proposition, P, can either be true (1) or false (0).
+\end{itemize}
+    \begin{displaymath}
+    % |c c|c| means that there are three columns in the table and
+    % a vertical bar ’|’ will be printed on the left and right borders,
+    % and between the second and the third columns.
+    % The letter ’c’ means the value will be centered within the column,
+    % letter ’l’, left-aligned, and ’r’, right-aligned.
+
+    \begin{array}{|c|}
+    P\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1\\
+    0\\
+    \end{array}
+    \end{displaymath}
+
+\subsubsection{Negation ($\lnot$)}
+
+\begin{itemize}
+    \item[]$\lnot$P is read as "Not P" and negates the truth value of P.
+    \item[] If P is "It is raining", then $\lnot$P is "It is not raining."
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|}
+    P & \lnot P\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 0\\
+    0 & 1\\
+    \end{array}
+    \end{displaymath}
+    
+\begin{itemize}
+    \item[]Mathematically: $\lnot P = 1 - P$
+\end{itemize}
+    
+\subsubsection{Conjunction ($\land$)}
+\begin{itemize}
+    \item[]$P \land Q$ is read as "P and Q".
+    \item[]If P is "It is raining" and Q is "It is cloudy", then $P \land Q$ is only true if if is raining and it is cloudy.
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & P \land Q\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1\\
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 0\\
+    \end{array}
+    \end{displaymath}
+
+\begin{itemize}
+    \item[]Mathematically: $P \land Q = min(P,Q)$
+\end{itemize}
+
+\subsubsection{Disjunction ($\lor$)}
+\begin{itemize}
+    \item[]$P \lor Q$ (or $P + Q$) is read as "P or Q".
+    \item[]If P is "It is raining" and Q is "It is cloudy", then $P \lor Q$ is true if it is raining or it is cloudy.
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & P \lor Q\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1\\
+    1 & 0 & 1\\
+    0 & 1 & 1\\
+    0 & 0 & 0\\
+    \end{array}
+    \end{displaymath}
+
+\begin{itemize}
+    \item[]Mathematically: $P \lor Q = max(P,Q)$
+\end{itemize}
+
+
+\subsubsection{Conditional  ($\Rightarrow)$}
+\begin{itemize}
+    \item[]$P \Rightarrow Q$ is read as "If P, then Q".
+    \item[]If P is "It is sunny" and Q is "I'm wearing sunscreen", then $P \Rightarrow Q$ means "If it is sunny then I'm wearing sunscreen."
+    \item[]Ask the question: When am I lying about wearing sunscreen? 
+    \item[]If it is sunny (P = 1) and I'm not wearing sunscreen (Q = 0), then I have lied.
+    
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & P \Rightarrow Q\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1\\
+    1 & 0 & 0\\
+    0 & 1 & 1\\
+    0 & 0 & 1\\
+    \end{array}
+    \end{displaymath}
+
+\textbf{Grammatically:}
+
+\begin{multicols}{2}
+If P, then Q.
+
+Whenever P, then also Q.
+
+For P, it is necessary that Q.
+
+P is a sufficient condition for Q.
+
+Q if/whenever P.
+
+Q, provided that P.
+
+For Q, it is sufficient that P.
+
+Q is a necessary condition for P.
+
+
+P only if Q.
+\end{multicols}
+
+\begin{center}    
+ \textit{Note that $P \Rightarrow Q \neq Q \Rightarrow P$}
+\end{center}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & Q \Rightarrow P\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1\\
+    1 & 0 & 1\\
+    0 & 1 & 0\\
+    0 & 0 & 1\\
+    \end{array}
+    \end{displaymath}
+
+\begin{itemize}
+    \item[]Mathematically: $P \Rightarrow Q\: \:iff\: P \le Q$
+\end{itemize}
+
+
+    
+\subsubsection{Biconditional ($\iff$)}
+\begin{itemize}
+    \item[]$P \iff Q$ is read as "P if and only if Q".
+    \item[]If P is "a is even" and Q is "a is divisible by 2", then $P \iff Q$ is true if both P and Q are true or if Q and P are false.
+    \item[]Equivalent to $( P \Rightarrow Q) \land (Q \Rightarrow P)$
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & P \iff Q\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1\\
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1\\
+    \end{array}
+    \end{displaymath}
+
+\begin{itemize}
+    \item[]Mathematically: $P \iff Q\: \:iff\: P = Q$
+\end{itemize}
+
+
+\subsubsection{Sheffer Stroke ($\uparrow$)}
+\begin{itemize}
+    \item[]$P \uparrow Q$ is read as "P nand Q".
+    \item[]Equivalent to $\lnot (P \land Q)$
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    P & Q & P \uparrow Q\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 0\\
+    1 & 0 & 1\\
+    0 & 1 & 1\\
+    0 & 0 & 1\\
+    \end{array}
+    \end{displaymath}
+
+\subsection{Logic Laws}
+Logical equivalences can be used to reduce complex formulas into simpler ones.
+
+\begin{multicols}{2}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+\medskip
+$\top:$ A \textbf{Tautology} is always true: $p \lor \lnot p$
+
+$\bot$: A \textbf{Contradiction} is always false: $p \land \lnot p$
+
+    \begin{displaymath}
+    \begin{array}{|c|c|}
+    \top & \bot \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 0\\
+    1 & 0\\
+    . & .\\
+    . & .\\
+    1 & 0\\
+    \end{array}
+    \end{displaymath}
+
+\end{multicols}
+
+\subsubsection{Identity Law}
+The identity of the proposition remains.
+
+\begin{multicols}{3}
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item[]\medskip
+    \item[]$p \land \top = p$
+    \item[]$p \lor \bot = p$
+\end{itemize}
+    
+    \begin{displaymath}
+    \begin{array}{|c|c|c|c|c|}
+    p & \top & \bot & p \land \top & p \lor \bot \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 0 & 1 & 1\\
+    1 & 1 & 0 & 1 & 1\\
+    0 & 1 & 0 & 0 & 0\\
+    0 & 1 & 0 & 0 & 0\\
+    \end{array}
+    \end{displaymath}
+
+\end{multicols}
+
+
+\subsubsection{Domination Law}
+The $\top$ or $\bot$ dominates the proposition.
+
+\begin{multicols}{4}
+
+\begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \item[]\medskip
+    \item[]$p \lor \top = \top$
+    \item[]$p \land \bot = \bot$
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|c|c|}
+    P & \top & \bot & p \lor \top & p \land \bot \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 0 & 1 & 0\\
+    1 & 1 & 0 & 1 & 0\\
+    0 & 1 & 0 & 1 & 0\\
+    0 & 1 & 0 & 1 & 0\\
+    \end{array}
+    \end{displaymath}
+
+\end{itemize}
+
+\end{multicols}
+
+
+\subsubsection{Double Negation Law}
+
+\begin{multicols}{3}
+
+\begin{itemize}
+    %\setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+
+    \item[]\smallskip
+    \item[]$\lnot \lnot p = p$
+    \item[]\medskip
+    \item[]\medskip
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    p & \lnot p & \lnot \lnot p \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 0 & 1\\
+    1 & 0 & 1\\
+    0 & 1 & 0\\
+    0 & 1 & 0\\
+    \end{array}
+    \end{displaymath}
+    
+
+\end{itemize}
+
+\end{multicols}
+
+
+\subsubsection{DeMorgan's Law}
+
+\begin{itemize}
+
+    \item[]$\lnot (p \land q) = \lnot p \lor \lnot q$
+    \item[]$\lnot (p \lor q) = \lnot p \land \lnot q$
+    \item[]Distribute the negation ($\lnot$) and flip the connective ($\land$ or $\lor$)
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|c|c|c|c|}
+    p & q & \lnot p & \lnot q & (p \land q) & \lnot (p \land q) & (\lnot p \lor \lnot q)\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 0 & 0 & 1 & 0 & 0\\
+    1 & 0 & 0 & 1 & 0 & 1 & 1\\
+    0 & 1 & 1 & 0 & 0 & 1 & 1\\
+    0 & 0 & 1 & 1 & 0 & 1 & 1\\
+    \end{array}
+    \end{displaymath}
+
+    %\item[]\medskip
+\end{itemize}
+
+\subsubsection{Distributive Law}
+\begin{itemize}
+    \item[]$p \land (q \lor r) = (p \land q) \lor (p \land r)$
+    \item[]$p \lor (q \land r) = (p \lor q) \land (p \lor r)$
+    \item[]When the $\land$ is outside the parentheses and the $\lor$ is inside, or vice versa.
+\end{itemize}
+
+\subsubsection{Absorption Law}
+
+\begin{itemize}
+    \item[]$p \land (p \lor r) = p$
+    \item[]$p \lor (p \land r) = p$ 
+    \item[]When the connectives are flipped and the p is in both.
+\end{itemize}
+
+\subsubsection{Commutative Law}
+
+\begin{itemize}
+    \item[]$p \land q = q \land p$
+    \item[]$p \lor q = q \lor p$
+\end{itemize}
+
+\subsubsection{Associative Law}
+
+\begin{itemize}
+    \item[]$p \land (q \land r) = (p \land q) \land r$
+    \item[]$p \lor (q \lor r) = (p \lor q) \lor r$
+    \item[]Order can be changed when the connectives are the same (when the connectives are different, the Distributive law applies)
+\end{itemize}
+
+\subsubsection{Inverse Law}
+
+\begin{itemize}
+    \item[]$p \land \lnot p = \bot$
+    \item[]$p \lor \lnot p - \top$
+    \item[]The inverses result in a contradiction or tautology.
+\end{itemize}
+
+\subsubsection{Conditional Law}
+
+\begin{itemize}
+    \setlength{\parskip}{0pt}
+    \item[]$p \Rightarrow q = \lnot p \lor q$
+    \item[]The inverses result in a contradiction or tautology.
+    
+\end{itemize}
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|c|c|}
+    p & \lnot p & q & p \Rightarrow q & \lnot p \lor q \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 0 & 1 & 1 & 1\\
+    1 & 0 & 0 & 0 & 0\\
+    0 & 1 & 1 & 1 & 1\\
+    0 & 1 & 0 & 1 & 1\\
+    \end{array}
+    \end{displaymath}
+    
+\subsection{Converse, Inverse, and Contrapositive}
+There are three terms related to conditionals ($\imples$).
+
+\textbf{Converse:}
+\begin{itemize}
+    \item[]If $p \Rightarrow q$, then the converse is $q \Rightarrow p$
+    \item[]Reverse the order of the propositions.
+\end{itemize}
+
+\textbf{Inverse:}
+\begin{itemize}
+    \item[]If $p \Rightarrow q$, then the inverse is $\neg p \Rightarrow \neg q$
+    \item[]Negate each proposition.
+\end{itemize}
+
+\textbf{Contrapositive:}
+\begin{itemize}
+    \item[]If $p \Rightarrow q$, then the inverse is $\neg a \Rightarrow \neg p$
+    \item[]Reverse the order and negate each proposition.
+    \item[]Take the contrapositive and the inverse.
+\end{itemize}
+
+\subsubsection{Converse, Inverse, and Contrapositive Logical Equivalence}
+
+The conditional is logically equivalent to the contrapositive
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    p \Rightarrow q & \neg q \Rightarrow \neg p & Steps\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    \neg p \lor q & \neg \neg q \lor \neg p & Conditional\:Law\\
+     & q \lor \neg p & Double\:Negative\\
+     & \neg p \lor q & Associative\:Law\\
+    \neg p \lor q & \neg p \lor q & qed\\
+    \end{array}
+    \end{displaymath}
+    
+The converse is logically equivalent to the inverse.
+
+    \begin{displaymath}
+    \begin{array}{|c|c|c|}
+    q \Rightarrow p & \neg p \Rightarrow \neg q & Steps\\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    \neg q \lor p & \neg \neg p \lor \neg q & Conditional\:Law\\
+     & p \lor \neg q & Double\:Negative\\
+     & \neg q \lor  & Associative\:Law\\
+    \neg q \lor p & \neg q \lor p & qed\\
+    \end{array}
+    \end{displaymath}
+    
+\subsection{Rules of Inference}
+The primary method of proofs in philosophical logic. 
+
+\subsubsection{Definitions}
+A set of \textbf{premises} ($p_1, p_2, \dots, p_n$) prove some \textbf{conclusion} ($q$) in an \textbf{argument}: 
+
+\begin{itemize}
+    \item[]$(p_1 \land p_2 \land \dots \land p_n) \Rightarrow q$
+\end{itemize}
+
+The argument is \textbf{valid} if whenever each premise is true, the conclusion is also true. 
+
+Example:
+\begin{itemize}
+    \item[]Let R = "It is raining." and W = "I will get wet."
+    \item[]Premise 1: If it is raining, I will get wet ($R \Rightarrow W$).
+    \item[]Premise 2: It is raining ($R$).
+    \item[]Conclusion: I will get wet ($W$).
+    \end{itemize}
+    
+    \begin{displaymath}
+    \begin{array}{|l|l|l|}
+    Step & Grammatically & Logically \\ % Use & to separate the columns
+    \hline  % Put a horizontal line between the table header and the rest.
+    Premise\: 1 & If\: it\: is\: raining,\: I\: will\: get\: wet. & R \Rightarrow W\\
+    Premise\: 2 & It\: is\: raining. & R\\
+    \hline
+    Conclusion & I\: will\: get\: wet. & W\\
+    \end{array}
+    \end{displaymath}
+   
+  
+\begin{itemize}
+    \item[]The truth table of a valid argument is a tautology.
+\end{itemize}
+    \begin{displaymath}
+    \begin{array}{|c|c|c|c|c|}
+    R & W & R \Rightarrow W & ((R \Rightarrow W) \land R) & ((R \Rightarrow W) \land R) \Rightarrow W) \\
+    \hline
+    P_2 & Q & P_1 & P_1 \land P_2 & (P_1 \land P_2) \Rightarrow Q\\
+    \hline  % Put a horizontal line between the table header and the rest.
+    1 & 1 & 1 & 1 & 1\\
+    1 & 0 & 0 & 0 & 1\\
+    0 & 1 & 1 & 1 & 1\\
+    0 & 0 & 1 & 0 & 1\\
+    \end{array}
+    \end{displaymath}
+
+
+\subsubsection{Modus Ponens (MPP)}
+Affirming the antecedent.
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p \Rightarrow q\\
+    p\\
+    \hline
+    \therefore q\\
+    \end{array}
+    \end{displaymath}
+    
+\subsubsection{Modus Tollens (MTT)}
+Denying the consequent.
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p \Rightarrow q\\
+    \neg q\\
+    \hline
+    \therefore \neg p\\
+    \end{array}
+    \end{displaymath} 
+
+\begin{itemize}
+        \item[]Since $p \Rightarrow q$ is equivalent to $\neg q \Rightarrow \neg p$, MTT is equivalent to MPP on the contrapositive.
+\end{itemize}
+    \begin{displaymath}
+    \begin{array}{|l|}
+    \neg q \Rightarrow \neg p\\
+    \neg q\\
+    \hline
+    \therefore \neg p\\
+    \end{array}
+    \end{displaymath}
+    
+\subsubsection{Hypothetical Syllogism (HS) }
+Transitivity.
+ 
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p \Rightarrow q\\
+    q \Rightarrow r\\
+    \hline
+    \therefore p \Rightarrow r\\
+    \end{array}
+    \end{displaymath}
+    
+\subsubsection{Disjuntive Syllogism (DS)}
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p \lor q\\
+    \neg q\\
+    \hline
+    \therefore p\\
+    \end{array}
+    \end{displaymath}
+
+\subsubsection{Addition}
+Or Induction.
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p\\
+    \hline
+    \therefore p \lor q\\
+    \end{array}
+    \end{displaymath}
+    
+\subsubsection{Simplification}
+And Elimination.
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p \land q\\
+    \hline
+    \therefore p\\
+    \therefore q\\
+    \end{array}
+    \end{displaymath}
+    
+\subsubsection{Conjunction}
+And Introduction.
+
+    \begin{displaymath}
+    \begin{array}{|l|}
+    p\\
+    q\\
+    \hline
+    \therefore p \land q\\
+    \end{array}
+    \end{displaymath}
+\subsection{}
+Methods of proof in logic:
+    \begin{itemize}
+        \item[]Truth Tables.
+        \item[]Use logic laws to reduce statements.
+        \item[]Rules of inference.
+    \end{itemize}
+    
+
+
+$\lnot P$ is equivalent to $P \uparrow P$
+
+
+
+To do
+
+\section{Counting}
+To do
+
+\section{Proofs}
+To do
+
+\section{Relations and Functions}
+To do
+
+\section{Number Theory}
+To do
+
+
+% You can even have references
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+\bibliographystyle{abstract}
+\bibliography{refFile}
+\end{multicols}
+\end{document}
