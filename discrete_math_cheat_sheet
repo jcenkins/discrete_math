@@ -1073,21 +1073,63 @@ And Introduction.
     \therefore p \land q\\
     \end{array}
     \end{displaymath}
-\subsection{}
-Methods of proof in logic:
-    \begin{itemize}
-        \item[]Truth Tables.
-        \item[]Use logic laws to reduce statements.
-        \item[]Rules of inference.
-    \end{itemize}
-    
 
 
-$\lnot P$ is equivalent to $P \uparrow P$
+\subsection{Predicate Logic}
+Predicate logic uses variables and allows forms that are not statements.
 
+The trust value of predicates depends on the value of variable \textbf{terms}.
 
+$G(x,y)$ x is greater than y.
+\begin{itemize}
+    \item[]$G(x,y)$ is an \textbf{open statement} since it does not have a truth value. 
+    \item[]$G(2,1)$ is a closed statement and is true since 2 is greater than 1.
+    \item[]$G(3,6$ is a closed statement and is false.
+\end{itemize}
 
-To do
+\subsection{Quantifiers}
+$\forall_x$: Universal Quantifier
+
+\begin{itemize}
+    \item[]For all x, x is P.
+    \item[]$\forall_x P(x) = (P(1) \land P(2) \land \dots \land P(n)$
+
+\end{itemize}
+
+$\exists_x$: Existential Quantifier
+
+\begin{itemize}
+    \item[]There exists some x such that x is P.
+    \item[]$\exists_x P(x) = (P(1) \lor P(2) \lor \dots \lor P(n)$
+\end{itemize}
+
+\textbf{Sentences}
+\begin{itemize}
+    \item[]For every real number n, there exists a real number m such that $m^2 = n$.
+    \item[]$\forall_x \in \mathbb{R}$\:\: $\exists_m \in \mathbb{R} \mid m^2 = n$
+\end{itemize}
+
+\begin{itemize}
+    \item[]Given two rationals x and y, $\sqrt{xy}$ will be rational.
+    \item[]$\forall_x \in \mathbb{Q}$\:\:\: $\forall_y \in \matbhbb{Q}$\:\: $\sqrt{xy} \in \mathbb{Q}$
+\end{itemize}
+
+\subsubsection{Negating Quantifiers}
+\begin{itemize}
+    \item[]$\forall_x P(x) = \neg \exists_x \neg [P(x)]$
+    \item[]$\exists_x P(x) = \neg \forall_x \neg [P(x)]$
+    \item[]$\neg \forall_x P(x) = \exists_x \neg [p(x)]$
+    \item[]$\neg \exists_x P(x) = \forall_x \neg [P(x)]$
+\end{itemize}
+
+\textbf{Equivalence trick:}
+
+\begin{itemize}
+    \item[]$\neg \forall_x P(X)$
+    \item[]$- \forall_x + P(x)$
+    \item[]$+ \exists_x - P(x)$
+    \item[]$\exists_x \neg P(X)$
+\end{itemize}
 
 \section{Counting}
 To do
@@ -1100,6 +1142,16 @@ To do
 
 \section{Number Theory}
 To do
+
+
+$\lnot P$ is equivalent to $P \uparrow P$
+\subsection{}
+Methods of proof in logic:
+    \begin{itemize}
+        \item[]Truth Tables.
+        \item[]Use logic laws to reduce statements.
+        \item[]Rules of inference.
+    \end{itemize}
 
 
 % You can even have references
