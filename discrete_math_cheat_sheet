@@ -9,6 +9,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 
+\usepackage[usestackEOL]{stackengine}[2013-10-15]
 
 
 \pdfinfo{
@@ -497,11 +498,6 @@ Notation:
 
 A \textbf{well-formed formula} (WFF) is an expression involving propositions and compound propositions that conform to the syntax of propositional logic.
 
-Example:
-\begin{itemize}
-    \item[]The statements "It is cloudy." and "It is not sunny." both capture the same proposition.
-\end{itemize}
-
 \subsection{Connectives and Truth Tables}
 
 All \textbf{connectives} take a truth value and output a new truth value. 
@@ -828,7 +824,7 @@ The $\top$ or $\bot$ dominates the proposition.
 \begin{itemize}
     \item[]$p \land (q \lor r) = (p \land q) \lor (p \land r)$
     \item[]$p \lor (q \land r) = (p \lor q) \land (p \lor r)$
-    \item[]When the $\land$ is outside the parentheses and the $\lor$ is inside, or vice versa.
+    \item[]when the connectives are different ($\land$ and $lor$.
 \end{itemize}
 
 \subsubsection{Absorption Law}
@@ -883,7 +879,7 @@ The $\top$ or $\bot$ dominates the proposition.
     \end{displaymath}
     
 \subsection{Converse, Inverse, and Contrapositive}
-There are three terms related to conditionals ($\imples$).
+There are three terms related to conditionals ($\implies$).
 
 \textbf{Converse:}
 \begin{itemize}
@@ -1078,7 +1074,7 @@ And Introduction.
 \subsection{Predicate Logic}
 Predicate logic uses variables and allows forms that are not statements.
 
-The trust value of predicates depends on the value of variable \textbf{terms}.
+The truth value of predicates depends on the value of variable \textbf{terms}.
 
 $G(x,y)$ x is greater than y.
 \begin{itemize}
@@ -1092,7 +1088,7 @@ $\forall_x$: Universal Quantifier
 
 \begin{itemize}
     \item[]For all x, x is P.
-    \item[]$\forall_x P(x) = (P(1) \land P(2) \land \dots \land P(n)$
+    \item[]$\forall_x P(x) = (P(1) \land P(2) \land \dots \land P(n))$
 
 \end{itemize}
 
@@ -1100,7 +1096,7 @@ $\exists_x$: Existential Quantifier
 
 \begin{itemize}
     \item[]There exists some x such that x is P.
-    \item[]$\exists_x P(x) = (P(1) \lor P(2) \lor \dots \lor P(n)$
+    \item[]$\exists_x P(x) = (P(1) \lor P(2) \lor \dots \lor P(n))$
 \end{itemize}
 
 \textbf{Sentences}
@@ -1131,11 +1127,238 @@ $\exists_x$: Existential Quantifier
     \item[]$\exists_x \neg P(X)$
 \end{itemize}
 
-\section{Counting}
-To do
 
+\section{Counting}
+
+\subsection{Addition Rule}
+For \textbf{separate} tasks, if A can be done in m ways and B can be done in n ways, then there are $m + n$ ways to do then A \textbf{or}   B.
+
+Example:
+\begin{itemize}
+    \item[]Roll an even number on a die: 3 ways
+    \item[]Draw a face card from a deck: 12 ways
+    \item[]Roll an even number \textbf{or} draw a face card: $3 + 12 = 15$  ways.
+\end{itemize}
+
+\subsection{Product Rule}
+For \textbf{subsequent} tasks, if A can be done in m ways and B can be done in n ways, then there are $m \times n$ ways to do A \textbf{and then} B.
+
+Example:
+
+How many ways to make a sandwich with one item of each type?
+
+\begin{tabular}{ l l c }
+ Item & Options & Count \\ 
+ Top Bread & White, Whole Wheat, Sourdough & 3 \\  
+ Meat & Ham, Pork, Steak, Rabbit, Human  & 5 \\
+ Vegetable & Lettuce, Tomato, Cucumber, Turnip & 4 \\
+ Bottom Bread & White, Whole Wheat, Sourdough & 3    
+\end{tabular}
+
+\begin{itemize}
+    \item[]$3 \times 5 \times 4 \times 3 = 180$ ways to make a sandwich.
+\end{itemize}
+
+\subsection{Factorials}
+Factorials are the number of ways to arrange n objects without repeating items .
+
+$n! = n \times (n - 1) \times (n - 2) \times \dots \times 3 \times 2 \times 1 $
+
+\begin{itemize}
+    \item[]$3! = 3 \times 2 \times 1 = 6$
+    \item[]6 ways to arrange 3 objects.
+    \item[]
+    \begin{tabular}{c c c}
+    1, 2, 3 & 1, 3, 2\\
+    2, 1, 3 & 2, 3, 1\\
+    3, 1, 2 & 3, 2, 1
+    \end{tabular}
+    \end{itemize}
+    
+For duplicate items, divide out the number of ways to arrange the duplicates.
+
+\begin{itemize}
+    \item[]How many ways can "ERR" be arranged?
+    \item[]    \item[]$\frac{3!}{2!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3$
+    \item[]
+    \begin{tabular}{c c c}
+    $ER_1R_2$ & $ER_2R_1$\\
+    $R_1ER_2$ & $R_2ER_1$\\
+    $R_1R_2E$ & $R_2R_1E$\\
+    \end{tabular}
+\end{itemize}
+
+$0! = 1$ since there is one way to arrange zero items. 
+
+\subsection{Permutations}
+Permutations are the number of ways to arrange k objects from a list or n objects without repeating items.
+
+$P(n,k) = \frac{n!}{(n-k)!}$
+
+\begin{itemize}
+    \item[]Arrange 2 numbers from 1, 2, 3, and 4.
+    \item[]$\frac{4!}{(4-2)!} = \frac{4 \times 3 \times 2 \times 1 }{2 \times 1} = 4 \times 3 = 12$
+    \item[]The factorial in the denominator cancels extraneous term in the numerator.
+\end{itemize}
+
+\subsection{Combinations}
+Combinations are the number of ways to \textbf{choose} k objects from a list or n objects without repeating items.
+
+$\binom{n}{k} = \frac{n}{k!(n-k)!}$
+\begin{itemize}
+    \item[]Read as "n choose k".
+    \item[]Combinations are \textbf{unordered}: ${a,b,c} = {c,b,a}$
+    \item[]Take the permutations formula and divide out the number of ways to arrange the k items being chosen.
+    \item[]$\binom{5}{2} = \frac{5!}{2!(5-2)!} = \frac{5!}{2!3!} = \frac{5 \times 4}{2} = 10$
+\end{itemize}
+
+Note: The sum of numbers in the denominator will equal to the number in the numerator.
+
+Example: How many ways are there to raw 3 diamonds \textbf{and} 2 clubs?
+\begin{itemize}
+    \item[]Each suit has 13 cards: $\binom{13}{3}$ and $\binom{13}{2}$
+    \item[]For subsequent tasks, use the product rule: $\binom{13}{3} \times \binom{13}{2}$
+\end{itemize}
+
+\subsubsection{Binomial Theorem}
+A formula to expand binomials of the form $(x + y)^n$ where $n \in \mathbb{Z}^{+1}$
+
+\begin{itemize}
+    \item[]$(x + y)^n = \binom{n}{0} x^n y^0 +\binom{n}{1}x^{n-1} y^1 + \dots + \binom{n}{n} x^0 y^n$
+\end{itemize}
+
+In summation notation:
+
+\[\sum_{i=0}^{n} \binom{n}{i} x^{n-i} y^i\]
+
+Example:
+    \begin{displaymath}
+    \begin{array}{|l|l|}
+    Algebraically & Binomial\: Theorem\\
+    \hline
+    (x + y)^2 & \binom{2}{0} x^2 y^0 + \binom{2}{1} x^1 y^1 + \binom{2}{2} x^0 y^2\\ % Use & to separate the columns
+    (x + y)(x + y) & \frac{2!}{0!2!} x^2 + \frac{2!}{1!1!} x y + \frac{2!}{2!0!} y^2\\
+    x^2 +2xy + y^2 & x^2 + 2xy + y^2\\
+    \end{array}
+    \end{displaymath}
+
+Note that $\binom{2}{0} = \binom{2}{2}$.
+\begin{itemize}
+    \item[]Generally: $\binom{n}{k} = \binom{n}{n-k}$
+\end{itemize}
+
+\subsubsection{Pascal's Triangle}
+Pascal's Triangle can be viewed as a triangle of binomial coefficients or a triangle where each number is the sum of the numbers above it.  
+
+\medskip
+
+\begin{multicols}{2}
+
+\def\x{\hspace{3ex}}    %BETWEEN TWO 1-DIGIT NUMBERS
+\def\y{\hspace{2.45ex}}  %BETWEEN 1 AND 2 DIGIT NUMBERS
+\def\z{\hspace{1.9ex}}    %BETWEEN TWO 2-DIGIT NUMBERS
+\stackMath
+
+\Longstack[l]{
+n=0\\
+n=1\\
+n=2\\
+n=3\\
+n=4\\
+n=5\qquad\ \\
+}
+\Longstack{
+1\\
+1\x 1\\
+1\x 2\x 1\\
+1\x 3\x 3\x 1\\
+1\x 4\x 6\x 4\x 1\\
+1\x 5\y 10\z 10\y 5\x 1\\
+\overline{0\x 1\x 2\x 3\x 4\x 5}
+}
+
+\Longstack{
+\binom{0}{0}\\
+\binom{1}{0}\x \binom{1}{1}\\
+\binom{2}{0}\x \binom{2}{1}\x \binom{2}{2}\\
+\binom{3}{0}\x \binom{3}{1}\x \binom{3}{2}\x \binom{3}{3}\\
+\binom{4}{0}\x \binom{4}{1}\x \binom{4}{2}\x \binom{4}{3}\x \binom{4}{4}\\
+}
+
+\end{multicols}
+
+
+\subsubsection{Combinations With Repetition}
+Given n objects to choose from, the number of ways to select r objects with repetition.
+
+$\binom{n + r - 1}{r}$
+
+Example:
+\begin{itemize}
+    \item[]Select 3 objects from {1,2,3,4} with repetition:
+    \item[]$\binom{4 + 3 - 1}{3} = \binom{6}{3} = \frac{6!}{3!(6-3)!} = \frac{6!}{3!3!}$
+\end{itemize}
+
+\textbf{Object Replacement Intuition:}
+\begin{itemize}
+    \item[]Whenever an object is selected, add it back in to the available objects to allow repetition.
+\end{itemize}
+
+    \begin{displaymath}
+        \begin{array}{|l|l|}
+        Objects & Selections\\
+        \hline
+        1, 2, 3, 4 & 2\\
+        1, \cancel{2}, 3, 4, 2 & 2, 4\\
+        1, \cancel{2}, 3, \cancel{4}, 2, 4 & 2, 4, 4\\
+        \end{array}
+    \end{displaymath}
+    
+    \begin{itemize}
+    \item[]Choosing 3 objects ({2,4,4}) from 4 ({1,2,3,4}) \textbf{with repetition} is equivalent to choosing 3 from a list of 6 objects ({1,2,3,4,2,4}) $\binom{6}{3}$.
+    \end{itemize}
+
+\textbf{Arrangements Intuition:}
+\begin{itemize}
+
+    \item[]A restaurant serves has 3 items:  cheeseburger, a hot dog, or a taco ($3n$). 4 students each buy a menu item ($4r$).
+    \item[]How many combinations of purchases can there be (assume the order doesn't matter)
+    \item[]Some combinations:
+    \item[]
+    \begin{displaymath}
+        \begin{array}{|c c c c | c c c c c c|}
+        A & & & & B & & & & \\
+        \hline
+        c & c & h & t & x & x & \mid & x & \mid & x \\
+        c & c & h & h & x & x & \mid & x & x & \mid \\
+        c & h & t & t & x & \mid & x & \mid & x & x \\
+        h & h  & t & t & \mid & x & x & \mid & x & x
+        \end{array}
+    \end{displaymath}
+    \item[]Column A shows some possible purchase combinations.
+    \item[]For Column B, the two bars separate series of distinct items (c, h, t)
+    \item[]The number of combinations can be calculated by the number of ways to arrange the bars and xs.
+    \item[]The number of bars required for the arrangements is $n - 1$ $(3 - 1 = 2)$
+    \item[]The number of arrangements is: $\frac{(n + r - 1)!}{r!(n-1)!}$ ($\frac{(3 + 4 - 1)!}{4!(3-1)!} = \frac{6!}{4!2!}$)
+    \item[]Substituting the formula: $\binom{((3 + 4)- 1)}{4} = \binom{6}{4} \frac{6!}{4!(6-4)!} = \frac{6!}{4!2!}$
+
+\end{itemize}
+
+
+
+In Progress
 \section{Proofs}
-To do
+
+\subsection{Direct Proof}
+
+\subsection{Proof By Case}
+
+\subsection{Proof By Contraposition}
+
+\subsection{Proof By Contradiction}
+
+\subsection{Mathematical Induction}
+
 
 \section{Relations and Functions}
 To do
@@ -1152,12 +1375,3 @@ Methods of proof in logic:
         \item[]Use logic laws to reduce statements.
         \item[]Rules of inference.
     \end{itemize}
-
-
-% You can even have references
-\rule{0.3\linewidth}{0.25pt}
-\scriptsize
-\bibliographystyle{abstract}
-\bibliography{refFile}
-\end{multicols}
-\end{document}
